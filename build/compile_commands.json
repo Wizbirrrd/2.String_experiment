@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/wizbird/Code/String_experiment/build",
+  "command": "/usr/bin/g++    -g   -o CMakeFiles/kmp.dir/main.cpp.o -c /home/wizbird/Code/String_experiment/main.cpp",
+  "file": "/home/wizbird/Code/String_experiment/main.cpp"
+}
+]
