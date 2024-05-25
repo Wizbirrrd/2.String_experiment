@@ -17,8 +17,7 @@ typedef struct {
 } HString; //堆分配存储串
 
 Status InitSting(HString &S) {
-  if (!S.ch)
-    exit(OVERFLOW);
+  S.ch = NULL;
   S.length = 0;
   return OK;
 }
