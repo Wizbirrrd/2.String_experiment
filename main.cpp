@@ -17,7 +17,6 @@ typedef struct {
 } HString; //堆分配存储串
 
 Status InitSting(HString &S) {
-  S.ch = (char *)malloc(INITSIZE * sizeof(char));
   if (!S.ch)
     exit(OVERFLOW);
   S.length = 0;
@@ -27,7 +26,7 @@ Status InitSting(HString &S) {
 Status StrAssign(HString &T, char *chars) {
   T.length = 0;
   for (T.length = 0; chars[T.length]; T.length++)
-    ;     //先求长度再分配
+    ; //先求长度再分配
   T.ch = (char *)malloc(T.length * sizeof(char));
   if (!T.ch)
     exit(OVERFLOW);
@@ -117,11 +116,6 @@ int KMP(HString s, HString t, int next[]) {
   } else {
     return -1;
   }
-}
-
-Status ClearString(HString &S) {
-  S.length = 0;
-  return OK;
 }
 
 Status DestoryString(HString &S) {
