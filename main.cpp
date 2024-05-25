@@ -6,7 +6,7 @@ using namespace std;
 #define TRUE 1
 #define FALSE 0
 #define OVERFLOW -1
-#define MAXSIZE 255
+#define INITSIZE 20
 #define ARGC 3
 
 typedef int Status;
@@ -14,10 +14,10 @@ typedef int Status;
 typedef struct {
   char *ch;
   int length;
-} HString;//堆分配存储串
+} HString; //堆分配存储串
 
 Status InitSting(HString &S) {
-  S.ch = (char *)malloc(MAXSIZE * sizeof(char));
+  S.ch = (char *)malloc(INITSIZE * sizeof(char));
   if (!S.ch)
     exit(OVERFLOW);
   S.length = 0;
@@ -26,9 +26,13 @@ Status InitSting(HString &S) {
 
 Status StrAssign(HString &T, char *chars) {
   T.length = 0;
+  for (T.length = 0; chars[T.length]; T.length++)
+    ;     //先求长度再分配
+  T.ch = (char *)malloc(T.length * sizeof(char));
+  if (!T.ch)
+    exit(OVERFLOW);
   for (int i = 1; chars[i - 1]; i++) {
     T.ch[i] = chars[i - 1]; //首位不存,方便KMP算法编写
-    T.length++;
   }
   return OK;
 }
@@ -109,7 +113,7 @@ int KMP(HString s, HString t, int next[]) {
     }
   }
   if (j > t.length) {
-    return i - j + 1;
+    return i - t.length;
   } else {
     return -1;
   }
@@ -139,7 +143,7 @@ int main(int argc, char **argv) {
   StrAssign(t, argv[2]);
 
   int *next = (int *)malloc(t.length * sizeof(int));
-  if(!next){
+  if (!next) {
     exit(OVERFLOW);
   }
   get_nextval(t, next);
@@ -148,6 +152,6 @@ int main(int argc, char **argv) {
   DestoryString(s);
   DestoryString(t);
   free(next); //释放内存
-  
+
   return 0;
 }
