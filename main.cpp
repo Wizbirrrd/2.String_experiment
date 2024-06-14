@@ -182,7 +182,9 @@ int main(int argc, char **argv)
         exit(OVERFLOW);
     }
     get_nextval(t, next);
-    cout << KMP(s, t, next);
+    cout << "S: \"" << argv[1] << "\"\n";
+    cout << "T: \"" << argv[2] << "\"\n";
+    cout << "return: " << KMP(s, t, next) << endl;
 
     DestoryString(s);
     DestoryString(t);
