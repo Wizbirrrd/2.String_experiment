@@ -8,7 +8,7 @@
             "name": "(gdb) 启动",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/wizbird/Code/String_experiment/main",
+            "program": "/home/wizbird/Code/2.String_experiment/main",
             "args": ["select * from dual", "dual"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
